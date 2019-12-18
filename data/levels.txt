@@ -1,0 +1,13 @@
+Level 1	25/50
+Level 2	50/100
+Level 3	75/150
+Level 4	100/200
+Level 5	200/400
+Level 6	300/600
+Level 7	500/1000
+Level 8	800/1600
+Level 9	1500/3000
+Level 10 2000/4000
+Level 11 3000/6000
+Level 12 5000/10000
+Level 13 10000/20000
