@@ -21,8 +21,8 @@ class Application(tk.Tk):
                      PlayersTab(self.tabControl, self.width, self.height),
                      TablesTab(self.tabControl, self.width, self.height)]
 
-        self.tabControl.add(self.tabs[0], text="Timer")
-        self.tabControl.add(self.tabs[1], text="Players")
+        # self.tabControl.add(self.tabs[0], text="Timer")
+        # self.tabControl.add(self.tabs[1], text="Players")
         self.tabControl.add(self.tabs[2], text="Tables")
 
         self.tabControl.pack(expand=True, fill="both")
