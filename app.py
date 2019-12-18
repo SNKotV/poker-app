@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from tab import Tab
 from timertab import TimerTab
+from playerstab import PlayersTab
+from tablestab import TablesTab
 
 class Application(tk.Tk):
     def __init__(self):
@@ -10,20 +12,19 @@ class Application(tk.Tk):
         self.title(self.name)
         self.width = 800
         self.height = 600
-        self.geometry(str(self.width) + 'x' + str(self.height))
+        self.minsize(width=self.width, height=self.height)
 
         self.tabControl = ttk.Notebook(self)
 
-        self.timerTab = TimerTab(self.tabControl)
-        self.playersTab = Tab(self.tabControl)
-        self.tablesTab = Tab(self.tabControl)
+        self.tabs = [TimerTab(self.tabControl, self.width, self.height),
+                     PlayersTab(self.tabControl, self.width, self.height),
+                     TablesTab(self.tabControl, self.width, self.height)]
 
-        self.tabControl.add(self.timerTab, text="Timer")
-        self.tabControl.add(self.playersTab, text="Players")
-        self.tabControl.add(self.tablesTab, text="Tables")
+        self.tabControl.add(self.tabs[0], text="Timer")
+        self.tabControl.add(self.tabs[1], text="Players")
+        self.tabControl.add(self.tabs[2], text="Tables")
 
-        self.tabControl.pack(expand=1, fill="both")
-
+        self.tabControl.pack(expand=True, fill="both")
 
     def run(self):
        self.mainloop()
