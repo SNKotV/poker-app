@@ -6,13 +6,11 @@ class Tab(ttk.Frame):
         ttk.Frame.__init__(self, parent)
         self.width = width
         self.height = height
+        self.bind('<Configure>', self.resize)
 
-    def resize(self, width, height):
-        if self.width == width and self.height == height:
-            print("ok")
-            return
-        self.width = width
-        self.height = height
+    def resize(self, event):
+        self.width = event.width
+        self.height = event.height
         self.contentResize()
 
     def contentResize(self):

@@ -10,7 +10,7 @@ class Application(tk.Tk):
         tk.Tk.__init__(self)
         self.name = "Poker Application"
         self.title(self.name)
-        self.width = 800
+        self.width = 900
         self.height = 600
         self.minsize(width=self.width, height=self.height)
 
@@ -20,8 +20,8 @@ class Application(tk.Tk):
                      PlayersTab(self.tabControl, self.width, self.height),
                      TablesTab(self.tabControl, self.width, self.height)]
 
-        self.tabControl.add(self.tabs[0], text="Timer")
-        self.tabControl.add(self.tabs[1], text="Players")
+        # self.tabControl.add(self.tabs[0], text="Timer")
+        # self.tabControl.add(self.tabs[1], text="Players")
         self.tabControl.add(self.tabs[2], text="Tables")
 
         self.tabControl.pack(expand=True, fill="both")
