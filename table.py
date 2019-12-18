@@ -10,22 +10,23 @@ class Table(tk.Canvas):
         self.height = height
         self.number = number
         self.seatSize = self.width / 10
-        self.gap = 10
+        self.gap = 30
         self.players = []
         self.activeSeats = 0
         self.configure(width=width, height=height)
         self.create_oval(self.seatSize + self.gap, self.seatSize + self.gap,
                          self.width - self.seatSize - self.gap, self.height - self.seatSize - self.gap, fill="green")
 
-    def resize(self, width, height):
+    def update(self, width, height):
         self.width = width
         self.height = height
         self.seatSize = self.width / 10
-        self.gap = 20
+        self.gap = 30
 
         self.configure(width=self.width, height=self.height, bd=1, bg="black")
         self.create_oval(self.seatSize + self.gap, self.seatSize + self.gap,
                          self.width - self.seatSize - self.gap, self.height - self.seatSize - self.gap, fill="green")
+        self.create_text(int(self.width / 2), int(self.height / 2), text=str(self.number), font="Times 38 bold")
 
         center = (self.width / 2, self.height / 2)
         lenght = center[0] - self.seatSize

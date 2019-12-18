@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import font
 from tkinter import ttk
 from tab import Tab
 from table import Table
@@ -11,6 +12,7 @@ class TablesTab(Tab):
         self.padding = 10
         self.tableWidth = self.width / 3
         self.tableHeight = self.height / 2
+        self.columnconfigure(3, minsize=self.tableWidth)
         self.tables = [Table(self, self.tableWidth, self.tableHeight, 1),
                        Table(self, self.tableWidth, self.tableHeight, 2),
                        Table(self, self.tableWidth, self.tableHeight, 3),
@@ -20,14 +22,26 @@ class TablesTab(Tab):
         self.tables[2].grid(row=1, column=0)
         self.tables[3].grid(row=1, column=1)
 
-    def contentResize(self):
+        self.tableView = ttk.Frame(self)
+        self.textFont = font.Font(size= 32)
+        self.label = tk.Label(self.tableView, text="Table #:", font=self.textFont).grid(row=0, column=0)
+        self.tableNumber = tk.Label(self.tableView)
+        self.listHeight = int(self.height / 18)
+        self.listWidth = int(self.width / 18)
+        self.playerList = tk.Listbox(self.tableView, width=self.listWidth, height=self.listHeight)
+        self.playerList.grid(row=1, column=0)
+
+        self.tableView.grid(row=0, column=2, rowspan=2, columnspan=2)
+
+    def contentUpdate(self):
         self.clearTab()
-        self.tableWidth = self.width / 3
-        self.tableHeight = self.height / 2 - self.padding
-        self.tables[0].resize(self.tableWidth, self.tableHeight)
-        self.tables[1].resize(self.tableWidth, self.tableHeight)
-        self.tables[2].resize(self.tableWidth, self.tableHeight)
-        self.tables[3].resize(self.tableWidth, self.tableHeight)
+        self.tables[0].update(self.tableWidth, self.tableHeight)
+        self.tables[1].update(self.tableWidth, self.tableHeight)
+        self.tables[2].update(self.tableWidth, self.tableHeight)
+        self.tables[3].update(self.tableWidth, self.tableHeight)
+        self.listHeight = int(self.height / 18)
+        self.listWidth = int(self.width / 18)
+        self.playerList.configure(width=self.listWidth, height=self.listHeight)
 
     def clearTab(self):
         for i in range(0, 4):
