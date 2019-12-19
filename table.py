@@ -13,6 +13,8 @@ class Table(tk.Canvas):
         self.gap = 30
         self.players = []
         self.activeSeats = 0
+        self.isClicked = False
+        self.bind("<Button-1>", self.onClick)
         self.configure(width=width, height=height)
         self.create_oval(self.seatSize + self.gap, self.seatSize + self.gap,
                          self.width - self.seatSize - self.gap, self.height - self.seatSize - self.gap, fill="green")
@@ -51,3 +53,6 @@ class Table(tk.Canvas):
     def setPlayers(self, players):
         self.players = players
         self.activeSeats = len(self.players)
+
+    def onClick(self, event):
+       self.isClicked = True

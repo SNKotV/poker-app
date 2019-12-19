@@ -14,24 +14,26 @@ class Application(tk.Tk):
         self.height = 800
         self.minsize(width=self.width, height=self.height)
         self.resizable(False, False)
+        self.bind("<Button-1>", self.update)
+
 
         self.tabControl = ttk.Notebook(self)
 
         self.tabs = [TimerTab(self.tabControl, self.width, self.height),
                      PlayersTab(self.tabControl, self.width, self.height),
                      TablesTab(self.tabControl, self.width, self.height)]
+        self.tabs[2].connectToPlayersTab(self.tabs[1])
 
-        self.tabControl.add(self.tabs[0], text="Timer")
+        #self.tabControl.add(self.tabs[0], text="Timer")
         self.tabControl.add(self.tabs[1], text="Players")
         self.tabControl.add(self.tabs[2], text="Tables")
 
-        self.tabControl.pack(expand=True, fill="both")
+        self.tabControl.grid(row=0)
 
     def run(self):
-        self.after(1000, self.update())
         self.mainloop()
 
-    def update(self):
+    def update(self, event):
         for tab in self.tabs:
             tab.update()
 
