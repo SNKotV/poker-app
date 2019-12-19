@@ -1,6 +1,5 @@
 import tkinter as tk
-import winsound
-from tkinter import ttk
+from tkinter import messagebox
 from tab import Tab
 
 class TimerTab(Tab):
@@ -49,8 +48,20 @@ class TimerTab(Tab):
 
 
     def start(self):
+        if not self.minTbox.get():
+            messagebox.showerror("Error", "Minutes field is empty")
+            return
+        if not self.secTbox.get():
+            messagebox.showerror("Error", "Seconds field is empty")
+            return
         min = self.minTbox.get()
+        if not str(min).isdigit():
+            messagebox.showerror("Error", "Minutes field has invalid value")
+            return
         sec = self.secTbox.get()
+        if not str(sec).isdigit():
+            messagebox.showerror("Error", "Seconds field has invalid value")
+            return
         self.iniTime = int(min) * 60 + int(sec)
         self.time = self.iniTime
         self.startButton.configure(state="disabled")
@@ -69,12 +80,6 @@ class TimerTab(Tab):
         self.currentLevel = 0
         self.level.configure(text=self.levels[self.currentLevel])
         self.timer.configure(text="0 : 0")
-        self.minTbox.delete(0, tk.END)
-        self.minTbox.insert(0, "0")
-        self.minTbox.update()
-        self.secTbox.delete(0, tk.END)
-        self.secTbox.insert(0, "0")
-        self.secTbox.update()
         self.startButton.configure(state="active")
         self.minTbox.configure(state="normal")
         self.secTbox.configure(state="normal")

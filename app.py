@@ -24,7 +24,7 @@ class Application(tk.Tk):
                      TablesTab(self.tabControl, self.width, self.height)]
         self.tabs[2].connectToPlayersTab(self.tabs[1])
 
-        #self.tabControl.add(self.tabs[0], text="Timer")
+        self.tabControl.add(self.tabs[0], text="Timer")
         self.tabControl.add(self.tabs[1], text="Players")
         self.tabControl.add(self.tabs[2], text="Tables")
 
